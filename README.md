@@ -1,2 +1,2 @@
-# core8
-Java 8 samples
+# Added various features from Jdk 8 onwards
+Added various features from Jdk 8 onwards
