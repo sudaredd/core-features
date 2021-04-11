@@ -1,18 +1,23 @@
 package thread;
 
+import org.apache.log4j.Logger;
 import org.junit.Test;
+import study.CompletableFutureTests;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 import static java.util.concurrent.CompletableFuture.supplyAsync;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class CompletableTasksTest {
+    static private final org.apache.log4j.Logger logger = Logger.getLogger(CompletableFutureTests.class);
 
 
     //Simple completed
@@ -71,7 +76,7 @@ public class CompletableTasksTest {
         CompletableFuture<Void> acceptFut = supplyAsync(() -> holder.processSomeData())
                 .thenApplyAsync(String::toUpperCase)
                 .thenApplyAsync(l::add)
-                .thenRun(() -> System.out.println("all done, check result"));
+                .thenRun(() -> logger.info("all done, check result"));
         acceptFut.join();
         assertTrue(!l.isEmpty());
         assertEquals("PROCESS", l.get(0));
@@ -91,7 +96,7 @@ public class CompletableTasksTest {
 
     public CompletableFuture<Double> notifyAndReturn(double total) {
         sleep(1);
-        System.out.println("notifying , total is :" + total);
+        logger.info("notifying , total is :" + total);
         return CompletableFuture.completedFuture(total);
     }
 
@@ -122,7 +127,7 @@ public class CompletableTasksTest {
 
     public String task(String task, int secs) {
         sleep(secs);
-        System.out.println("returing task is :" + task);
+        logger.info("returing task is :" + task);
         return task;
     }
 
@@ -134,8 +139,30 @@ public class CompletableTasksTest {
         CompletableFuture<String> task3 = CompletableFuture.supplyAsync(() -> task("task 3", 2));
 
         CompletableFuture.allOf(task1, task2, task3)
-                .thenRun(() -> System.out.println("all tasks done, exiting"))
+                .thenRun(() -> logger.info("all tasks done, exiting"))
                 .join();
+
+    }
+
+    @Test
+    public void testAll_1() {
+
+        List<CompletableFuture<String>> completableFutures = Arrays.asList(
+                supplyAsync(() -> task("task 1", 1)),
+                supplyAsync(() -> task("task 2", 4)),
+                supplyAsync(() -> task("task 3", 2)));
+
+      /*  CompletableFuture<List<String>> listCompletableFuture = CompletableFuture.allOf(task1, task2, task3)
+                .thenApply(dummy -> Arrays.asList(task1, task2, task3).stream()
+                        .map(f -> f.join())
+                        .collect(Collectors.toList()));
+        List<String> result = listCompletableFuture.join();
+        logger.info("result:"+result);*/
+
+        List<String> result = completableFutures.stream()
+                .map(f -> f.join())
+                .collect(Collectors.toList());
+        logger.info("result:"+result);
 
     }
 
@@ -150,7 +177,7 @@ public class CompletableTasksTest {
                 .thenApplyAsync(q -> q * 10.25)
                 .thenApplyAsync(this::calculate)
                 .exceptionally(ex -> {
-                    System.out.println("exception occured, returning default:" + ex.getMessage());
+                    logger.info("exception occured, returning default:" + ex.getMessage());
                     return 0.0;
                 });
         Double result = res.join();
