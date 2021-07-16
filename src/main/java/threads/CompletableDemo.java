@@ -1,4 +1,4 @@
-package threaads;
+package threads;
 
 import java.time.Instant;
 import java.util.concurrent.CompletableFuture;

@@ -4,6 +4,8 @@ package study;
 import org.apache.log4j.Logger;
 import org.junit.Test;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.*;
 
 import static java.util.concurrent.CompletableFuture.delayedExecutor;
@@ -142,6 +144,15 @@ public class CompletableFutureTests {
         logger.debug("starting");
         String res = combined.join();
         logger.debug("result is :"+res);
+
+    }
+
+    @Test
+    public void testCombineToList() {
+        CompletableFuture<String> cf1 = CompletableFuture.supplyAsync(()->"cf1 is complete", getDelayedExecutor(1));
+        CompletableFuture<String> cf2 = CompletableFuture.supplyAsync(()->"cf2 is complete", getDelayedExecutor(2));
+        List<String> join = cf1.thenCombine(cf2, (val1, val2) -> Arrays.asList(val1, val2)).join();
+        logger.info("result  "+ join);
 
     }
 
