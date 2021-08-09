@@ -33,7 +33,7 @@ public class Employee {
 		return id;
 	}
 	
-	public static List<Employee> persons() {
+	public static List<Employee> employees() {
 		Employee p1 = new Employee(1, "Jake", Gender.MALE, LocalDate.of(1971,
 				Month.JANUARY, 1), 2343.0);
 		Employee p2 = new Employee(2, "Jack", Gender.MALE, LocalDate.of(1972,

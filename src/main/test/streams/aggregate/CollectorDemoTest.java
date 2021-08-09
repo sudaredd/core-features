@@ -14,7 +14,7 @@ import streams.Employee;
 public class CollectorDemoTest {
 
 	CollectorDemo c = new CollectorDemo();
-	List<Employee> persons = Employee.persons();
+	List<Employee> persons = Employee.employees();
 	
 	@Test
 	public void testFiterEmps() {

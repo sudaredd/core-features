@@ -10,7 +10,7 @@ import streams.Employee;
 
 public class StreamAggregateFunsTest {
 
-	List<Employee> persons = Employee.persons();
+	List<Employee> persons = Employee.employees();
 	
 	@Test 
 	public void testSum() {
