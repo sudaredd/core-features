@@ -12,6 +12,15 @@ public class Employee {
 
 	private long id;
 	private String name;
+
+	public Gender getGender() {
+		return gender;
+	}
+
+	public void setGender(Gender gender) {
+		this.gender = gender;
+	}
+
 	private Gender gender;
 	private LocalDate dob;
 	private double income;
