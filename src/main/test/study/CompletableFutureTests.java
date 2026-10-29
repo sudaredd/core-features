@@ -1,7 +1,8 @@
 package study;
 
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -12,7 +13,7 @@ import static java.util.concurrent.CompletableFuture.delayedExecutor;
 
 public class CompletableFutureTests {
 
-    static private final org.apache.log4j.Logger logger = Logger.getLogger(CompletableFutureTests.class);
+    static private final org.slf4j.Logger logger = LoggerFactory.getLogger(CompletableFutureTests.class);
 
     @Test
     public void join() {
@@ -33,7 +34,7 @@ public class CompletableFutureTests {
             String result = cf.join();
             logger.info(result);
         } catch (RuntimeException e) {
-            logger.error(e);
+            logger.error("error", e);
         }
     }
 
