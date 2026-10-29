@@ -20,7 +20,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
 public class CodingProject {
-    static private final org.apache.log4j.Logger log = org.apache.log4j.Logger.getLogger(CompletableFutureTests.class);
+    static private final org.slf4j.Logger log = LoggerFactory.getLogger(CompletableFutureTests.class);
 
     @Test
     public void parseCoordinatesAndCities() {
