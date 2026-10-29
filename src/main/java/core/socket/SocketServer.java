@@ -9,11 +9,12 @@ import java.net.SocketTimeoutException;
 import java.util.concurrent.TimeUnit;
 
 import core.util.StringUtil;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class SocketServer implements Runnable {
 	
-	static private final Logger log = Logger.getLogger(SocketServer.class);
+	static private final Logger log = LoggerFactory.getLogger(SocketServer.class);
 
 	private int port;
 	private ServerSocket serverSocket;
