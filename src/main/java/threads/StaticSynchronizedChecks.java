@@ -1,11 +1,12 @@
 package threads;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import static java.lang.Thread.sleep;
 public class StaticSynchronizedChecks {
 
-    static private final org.apache.log4j.Logger log = Logger.getLogger(StaticSynchronizedChecks.class);
+    static private final org.slf4j.Logger log = LoggerFactory.getLogger(StaticSynchronizedChecks.class);
 
     public static void main(String[] args) {
         StaticSynchronizedChecks staticSynchronizedChecks1 = new StaticSynchronizedChecks();
