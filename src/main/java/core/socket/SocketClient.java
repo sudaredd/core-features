@@ -8,12 +8,13 @@ import java.io.OutputStream;
 import java.net.InetAddress;
 import java.net.Socket;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class SocketClient {
 
 	private int port;
-	static private final Logger log = Logger.getLogger(SocketClient.class);
+	static private final Logger log = LoggerFactory.getLogger(SocketClient.class);
 	 
 	public SocketClient(int port) {
 		this.port = port;
