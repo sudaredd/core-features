@@ -1,6 +1,7 @@
 package thread;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.junit.Test;
 import study.CompletableFutureTests;
 
@@ -17,7 +18,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class CompletableTasksTest {
-    static private final org.apache.log4j.Logger logger = Logger.getLogger(CompletableFutureTests.class);
+    static private final org.slf4j.Logger logger = LoggerFactory.getLogger(CompletableFutureTests.class);
 
 
     //Simple completed

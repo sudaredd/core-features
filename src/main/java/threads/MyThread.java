@@ -1,9 +1,10 @@
 package threads;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 class Common {
-    Logger log = Logger.getLogger(Common.class);
+    Logger log = LoggerFactory.getLogger(Common.class);
     public synchronized void synchronizedMethod1() {
         log.info("synchronizedMethod1 called");
         try {
@@ -28,7 +29,7 @@ class Common {
 public class MyThread extends Thread {
     private int id = 0;
     private Common common;
-    Logger log = Logger.getLogger(MyThread.class);
+    Logger log = LoggerFactory.getLogger(MyThread.class);
 
     public MyThread(String name, int no, Common object) {
         super(name);
