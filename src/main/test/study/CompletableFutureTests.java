@@ -128,7 +128,7 @@ public class CompletableFutureTests {
         CompletableFuture cf1 = new CompletableFuture();
         CompletableFuture cf2 = new CompletableFuture();
 
-        CompletableFuture<Void> cfEither = cf1.acceptEitherAsync(cf2, logger::info, getDelayedExecutor(1));
+        CompletableFuture<Void> cfEither = cf1.acceptEitherAsync(cf2, o -> logger.info("{}", o), getDelayedExecutor(1));
         cf1.complete("cf1 completed");
         cf2.complete("cf2 completed");
         Void join = cfEither.get(2, TimeUnit.SECONDS);
