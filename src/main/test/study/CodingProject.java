@@ -7,6 +7,7 @@ import com.completableFuture.parser.geo.GeoDataset;
 import com.completableFuture.parser.geo.GeoPoint;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
